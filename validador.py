@@ -1,37 +1,44 @@
-cpf = input('Digite um cpf: [000.000.000-00')
-cpf_original = cpf
-soma = 0
-soma2 = 0
-t = 10
-cpf = cpf.split('-')
-digitos = cpf[1]
-cpf.pop()
-cpf = str(cpf)
-for i in cpf:
-    if i in '1234567890':
-        while t:
-            soma += int(i)*t
-            t -= 1
-            break
-num1 = 11 - (soma % 11)
-num3 = num1
-if num1 > 9:
-    num1 = str(0)
-t = 10
-t += 1
-for i in cpf:
-    if i in '1234567890':
-        while t:
-            soma2 += int(i)*t
-            t -= 1
-            break
-soma2 += num3 * t
-num2 = 11 - (soma2 % 11)
-if num2 > 9:
-    num2 = str(0)
-num3 = str(num1)+str(num2)
-digitos2 = num3
-if digitos == digitos2:
-    print(f'O CPF {cpf_original} é um cpf valido!')
-else:
-    print(f'O CPF {cpf_original} é um cpf inválido!')
+cpf = '022.200.280-89'
+
+
+def limpastrings(args):
+    args = str(args)
+    a, b = args.split('-')
+    a = a.split('.')
+    a = ''.join(a)
+    return a, b
+
+
+def calculo(args):
+    args = list(args)
+    args2 = str(args[1]) #digito
+    args = str(args[0])
+    a = 10
+    soma = 0
+    soma2 = 0
+    for i in args:
+        soma += int(i) * a
+        a -= 1
+    soma = 11-(soma%11)
+    if soma > 9:
+        soma = 0
+    a = 11
+    for i in args:
+        soma2 += int(i) * a
+        a -= 1
+    soma2 += soma*a
+    soma2 = 11-(soma2%11)
+    soma = str(soma)
+    if soma2 > 9:
+        soma2 = str(0)
+    else:
+        soma2 = str(soma2)
+    soma += soma2
+    if soma == args2:
+        soma = 'CPF VÁLIDO!'
+    else:
+        soma = 'CPF INVÁLIDO'
+    return soma
+
+t = calculo(limpastrings(cpf))
+print(t)
