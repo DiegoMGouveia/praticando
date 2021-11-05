@@ -29,7 +29,7 @@ def sortear(args):
     return palavra
 
 
-tema_escolhida = input(f'Escolha  uma categoria {categoria}: ')
+categoria_escolhida = input(f'Escolha  uma categoria {categoria}: ')
 palavra = sortear(biblioteca[categoria_escolhida])
 print(f'Categoria escolhida: {categoria_escolhida}\n '
       f'Palavra sorteada: {palavra}')
