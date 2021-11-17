@@ -1,6 +1,6 @@
 #exercicio 93 curso de python
 
-lista_de_tarefa = ['Estudar', 'Brincar', 'trabalhar']
+lista_de_tarefa = []
 desfeito = []
 
 
