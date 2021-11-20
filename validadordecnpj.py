@@ -22,13 +22,9 @@ Recap.
 6543298765432 -> Segunro digito
 """
 
-calc = iter("543298765432")
-calc2 = iter("6543298765432")
-
 
 def removcaracteres(arg):
-    a = arg
-    a = a.split('-')
+    a = arg.split('-')
     dig = a[1]
     a.pop()
     documento = []
@@ -70,19 +66,26 @@ def digito_2(cnpj, calculo, dig):
 
 
 while True:
-    try:
-        cnpj_original = input('Digite o CNPJ: ')
-        if '-' in cnpj_original:
+    calc = iter("543298765432")
+    calc2 = iter("6543298765432")
+    cnpj_original = input('Digite o CNPJ: ')
+    if '-' in cnpj_original:
+        if len(cnpj_original) == 18:
             cnpj_original, dig_original = removcaracteres(cnpj_original)
         else:
+            print('verifique os números digitados!')
+            continue
+            
+    else:
+        if len(cnpj_original) == 14:
             cnpj_original, dig_original = removcaracteres2(cnpj_original)
-            print(cnpj_original, dig_original)
-        dig1 = digito_1(cnpj_original, calc)
-        dig2 = digito_2(cnpj_original, calc2, dig1)
-        if dig2 == dig_original:
-            print('verdadeiro')
-        else:
-            print('falso')
-    except:
-        pass
-    break
+    dig1 = digito_1(cnpj_original, calc)
+    dig2 = digito_2(cnpj_original, calc2, dig1)
+    if dig2 == dig_original:
+        print('CNPJ verdadeiro')
+    else:
+        print('CNPJ falso')
+    
+    continuar = input('Quer continuar? [s/n]')	
+    if continuar in 'Nn':
+        break
